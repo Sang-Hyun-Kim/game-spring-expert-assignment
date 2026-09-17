@@ -35,3 +35,18 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# --- AI 에이전트 협업 자산: 제출물이 아니다 ---
+# 폴더 단위로 제외한다. 안에 든 파일 이름은 이 파일에 적지 않는다.
+/AGENTS.md
+/CLAUDE.md
+/.agents/
+/.antigravity/
+/.claude/
+/.mcp.json
+
+# --- 제출 정책 ---
+# 채점자가 clone 후 그대로 실행할 수 있어야 하므로
+# src/main/resources/application.properties 와 인프라 정의(docker compose, .env 예시)는 커밋한다.
+# 담긴 비밀번호는 로컬 과제 전용 더미값이며 운영 자격증명이 아니다.
+# 실제 비밀값은 환경변수로 주입하고 커밋하지 않는다.

@@ -1,0 +1,42 @@
+name: webcraft
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: webcraft-mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-webcraft}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?docker/.env 에 MYSQL_ROOT_PASSWORD 를 설정하세요}
+    ports:
+      - "${MYSQL_HOST_PORT:-3309}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    # PC 재부팅 후에도 자동 기동. 단, 사용자가 stop 한 경우는 그대로 둔다.
+    restart: unless-stopped
+    # lvl 1에 대한 피드백
+    # 초기화 중에 애플리케이션이 붙으면 Communications link failure 로 실패한다.
+    # docker compose ps 의 STATUS 가 healthy 가 된 뒤에 bootRun 한다.
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: webcraft-redis
+    ports:
+      - "${REDIS_HOST_PORT:-6380}:6379" #6379는 다른 프로젝트가 사용중
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    # 위의 mysql 설명과 동일
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  mysql_data:
+  redis_data:
