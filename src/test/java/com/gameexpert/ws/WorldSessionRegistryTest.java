@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
 class WorldSessionRegistryTest {
-    // @Test
+    @Test
     void registersAndFindsConnectionIgnoringNicknameCase() {
         WorldSessionRegistry registry = new WorldSessionRegistry();
         WebSocketSession session = mock(WebSocketSession.class);
@@ -19,7 +19,7 @@ class WorldSessionRegistryTest {
         assertThat(registry.get(12L, "Alex")).isNull();
     }
 
-    // @Test
+    @Test
     void duplicateCannotReplaceOriginalAndDifferentWorldIsIndependent() {
         WorldSessionRegistry registry = new WorldSessionRegistry();
         WebSocketSession original = mock(WebSocketSession.class);
