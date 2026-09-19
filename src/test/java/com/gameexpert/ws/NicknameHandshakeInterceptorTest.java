@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class NicknameHandshakeInterceptorTest {
-    // @Test
+    @Test
     void looksUpRequestedPlayerAndWorldAndStoresConnectionAttributes() {
         PlayerRepository players = mock(PlayerRepository.class);
         WorldRepository worlds = mock(WorldRepository.class);
@@ -48,7 +48,7 @@ class NicknameHandshakeInterceptorTest {
                 .containsEntry(NicknameHandshakeInterceptor.ATTR_PLAYER_ID, 31L)
                 .doesNotContainKey(NicknameHandshakeInterceptor.ATTR_ERROR_CODE);
     }
-    // @Test
+    @Test
     void missingPlayerUsesProvidedErrorResponse() {
         PlayerRepository players = mock(PlayerRepository.class);
         WorldRepository worlds = mock(WorldRepository.class);
@@ -69,7 +69,7 @@ class NicknameHandshakeInterceptorTest {
         assertThat(attributes).containsEntry(NicknameHandshakeInterceptor.ATTR_ERROR_CODE, 4000);
     }
 
-    // @Test
+    @Test
     void missingWorldUsesProvidedErrorResponse() {
         PlayerRepository players = mock(PlayerRepository.class);
         WorldRepository worlds = mock(WorldRepository.class);
