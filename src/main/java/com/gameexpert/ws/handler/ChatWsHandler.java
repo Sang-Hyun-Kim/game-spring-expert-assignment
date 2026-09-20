@@ -54,12 +54,14 @@ public class ChatWsHandler implements WsMessageHandler {
     }
 
     private String readContent(JsonNode message) {
-        // TODO Lv 13: API 명세의 채팅 내용을 읽습니다.
-        return "";
+        return WsFields.text(message, "content");
     }
 
     private ChatResponse createResponse(WsMessageContext context, String content) {
-        // TODO Lv 13: 현재 연결의 사용자로 저장하고 명세에 맞는 응답을 만듭니다.
-        return null;
+
+        ChatMessageResponse chatMessageResponse = chatService.saveMessage(context.worldId(), context.nickname(), content);
+        return new ChatResponse(chatMessageResponse.getSender(),
+                chatMessageResponse.getContent(),
+                chatMessageResponse.getCreatedAt());
     }
 }
