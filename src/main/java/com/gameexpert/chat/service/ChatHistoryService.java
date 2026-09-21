@@ -38,8 +38,7 @@ public class ChatHistoryService {
                         message.getContent(),
                         message.getCreatedAt()
                 )).toList();
-        // TODO Lv 17: 다음 페이지가 있으면 반환한 마지막 항목을, 없으면 null을 선택합니다.
-        ChatHistoryEntry last = null;
+        ChatHistoryEntry last = hasNext ? items.getLast() : null;
         return new ChatHistoryPage(items, hasNext,
                 last == null ? null : last.getCreatedAt(),
                 last == null ? null : last.getId());

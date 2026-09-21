@@ -34,7 +34,7 @@ class ChatHistoryTest {
         service = new ChatHistoryService(repository, worlds);
     }
 
-    // @Test
+    @Test
     void nextCursorUsesLastReturnedItemInsteadOfExtraRow() {
         List<ChatMessage> found = List.of(
                 message(30L, TIME),
@@ -51,7 +51,7 @@ class ChatHistoryTest {
         assertThat(page.getNextCreatedAt()).isEqualTo(TIME.minusSeconds(1));
     }
 
-    // @Test
+    @Test
     void lastPageHasNoCursorEvenWhenItContainsMessages() {
         givenMessages(List.of(message(20L, TIME), message(10L, TIME.minusSeconds(1))));
 
@@ -63,7 +63,7 @@ class ChatHistoryTest {
         assertThat(page.getNextCreatedAt()).isNull();
     }
 
-    // @Test
+    @Test
     void emptyPageHasNoCursor() {
         givenMessages(List.of());
 
