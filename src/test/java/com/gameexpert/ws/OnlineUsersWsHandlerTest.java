@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class OnlineUsersWsHandlerTest {
-    // @Test
+    @Test
     void returnsSortedOpenUsersOnlyToRequester() {
         WorldSessionRegistry registry = mock(WorldSessionRegistry.class);
         WorldBroadcaster broadcaster = mock(WorldBroadcaster.class);
@@ -40,7 +40,7 @@ class OnlineUsersWsHandlerTest {
         verifyNoMoreInteractions(registry, broadcaster);
     }
 
-    // @Test
+    @Test
     void returnsZeroForAnEmptyList() {
         WorldSessionRegistry registry = mock(WorldSessionRegistry.class);
         WorldBroadcaster broadcaster = mock(WorldBroadcaster.class);
