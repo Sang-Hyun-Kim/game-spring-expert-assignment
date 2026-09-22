@@ -1,0 +1,25 @@
+# 빌드 컨텍스트에서 제외. 전송량을 줄이고 이미지에 섞여 들어가는 사고를 막는다.
+
+# 호스트 산출물 (fat jar 180MB). 컨테이너 안에서 다시 빌드한다
+build/
+.gradle/
+
+.git/
+.gitignore
+.gitattributes
+
+.idea/
+*.iml
+
+# 에이전트 작업 공간. 제출물도 이미지 구성요소도 아니다
+.agents/
+.antigravity/
+.claude/
+AGENTS.md
+CLAUDE.md
+
+# .env 의 DB 비밀번호를 컨텍스트에 넣지 않는다 (compose 는 실행 시점에 읽는다)
+docker/
+
+*.log
+logs/
